@@ -16,6 +16,7 @@ public class DoctorResponse {
     private int ssn;
     private String specialization;
 
+
     public DoctorResponse(Doctor doctor) {
         this.id = doctor.getId();
         this.firstName = doctor.getFirstName();

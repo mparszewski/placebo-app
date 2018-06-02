@@ -15,6 +15,10 @@ public class DoctorServiceImpl implements DoctorService{
 
     private DoctorsRepository doctorsRepository;
 
+    public DoctorServiceImpl(DoctorsRepository doctorsRepository) {
+        this.doctorsRepository = doctorsRepository;
+    }
+
     @Override
     public List<DoctorResponse> findAll() {
         return doctorsRepository.findAll()
