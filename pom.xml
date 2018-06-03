@@ -75,7 +75,7 @@
                             <artifactItems>
                                 <artifactItem>
                                     <groupId>com.github.mparszewski</groupId>
-                                    <artifactId>webapp-runner</artifactId>
+                                    <artifactId>placebo-app</artifactId>
                                     <version>8.0.30.2</version>
                                     <destFileName>webapp-runner.jar</destFileName>
                                 </artifactItem>
