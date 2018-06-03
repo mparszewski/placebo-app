@@ -1,1 +1,0 @@
-web: java $JAVA_OPTS -jar target/dependency/placebo-app.jar --port $PORT target/*.war
