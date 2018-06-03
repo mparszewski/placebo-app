@@ -1,4 +1,4 @@
-package com.example.placebo.controllers;
+package com.example.placebo.controllers.doctors;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +9,6 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "hello placebo app";
+        return "<h1>hello placebo-app</h1>";
     }
 }

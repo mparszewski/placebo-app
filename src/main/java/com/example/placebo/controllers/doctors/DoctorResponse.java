@@ -1,4 +1,4 @@
-package com.example.placebo.controllers;
+package com.example.placebo.controllers.doctors;
 
 import com.example.placebo.entities.Doctor;
 import lombok.AllArgsConstructor;

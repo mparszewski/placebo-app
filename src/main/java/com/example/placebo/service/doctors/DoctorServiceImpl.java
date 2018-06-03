@@ -1,17 +1,15 @@
-package com.example.placebo.service;
+package com.example.placebo.service.doctors;
 
-import com.example.placebo.controllers.DoctorResponse;
+import com.example.placebo.controllers.doctors.DoctorResponse;
 import com.example.placebo.entities.Doctor;
 import com.example.placebo.repository.DoctorsRepository;
-import org.hibernate.ObjectNotFoundException;
-import org.omg.PortableServer.POAPackage.ObjectAlreadyActive;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class DoctorServiceImpl implements DoctorService{
+public class DoctorServiceImpl implements DoctorService {
 
     private DoctorsRepository doctorsRepository;
 
@@ -28,8 +26,8 @@ public class DoctorServiceImpl implements DoctorService{
     }
 
     @Override
-    public DoctorResponse findById(int id) throws ObjectNotFoundException, ObjectAlreadyActive {
-        Doctor doctor = doctorsRepository.findById(id).orElseThrow(ObjectAlreadyActive::new);
+    public DoctorResponse findById(int id) throws com.example.placebo.exceptions.ObjectNotFoundException {
+        Doctor doctor = doctorsRepository.findById(id).orElseThrow(com.example.placebo.exceptions.ObjectNotFoundException::new);
         return new DoctorResponse(doctor);
     }
 }
