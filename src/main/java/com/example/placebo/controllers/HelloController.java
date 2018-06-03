@@ -9,6 +9,6 @@ public class HelloController {
 
     @RequestMapping("/")
     public String index() {
-        return "<h1>hello trial application</h1>";
+        return "<h1>hello trial Application</h1>";
     }
 }

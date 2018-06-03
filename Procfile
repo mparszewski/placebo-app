@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar target/placebo-0.0.1-SNAPSHOT.jar
+web: java -jar -Dspring.datasource.maxActive=5 -Dserver.port=$PORT $JAVA_OPTS build/libs/*.jar
