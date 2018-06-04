@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface DoctorService {
 
-    List<DoctorResponse> findAll();
-
     DoctorResponse findById(int id) throws ObjectNotFoundException;
+
+    List<DoctorResponse> findByTrialId(int trialId) throws ObjectNotFoundException;
 }

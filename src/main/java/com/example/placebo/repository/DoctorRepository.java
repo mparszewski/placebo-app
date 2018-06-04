@@ -4,8 +4,11 @@ import com.example.placebo.entities.Doctor;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface DoctorsRepository extends JpaRepository<Doctor, Integer> {
+import java.util.List;
 
+@Repository
+public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
+
+    List<Doctor> findByTrial_Id(int trialId);
 
 }

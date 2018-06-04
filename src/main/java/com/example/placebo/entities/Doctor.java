@@ -4,6 +4,8 @@ package com.example.placebo.entities;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -31,4 +33,8 @@ public class Doctor{
 
     @Column(name = "specialization")
     private String specialization;
+
+    @ManyToOne
+    @JoinColumn(name = "trial_id")
+    private Trial trial;
 }
