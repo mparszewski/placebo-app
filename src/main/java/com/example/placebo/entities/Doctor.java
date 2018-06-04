@@ -1,11 +1,9 @@
 package com.example.placebo.entities;
 
-
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Optional;
 
 @Getter
 @Setter
@@ -22,17 +20,20 @@ public class Doctor{
     @Column(name = "id")
     private int id;
 
-    @Column(name = "first_name")
-    private String firstName;
+    @Column(name = "title")
+    private String title;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "surname")
+    private String surname;
 
     @Column(name = "ssn")
     private int ssn;
 
-    @Column(name = "specialization")
-    private String specialization;
+    @Column(name = "specialisation")
+    private String specialisation;
 
     @ManyToOne
     @JoinColumn(name = "trial_id")

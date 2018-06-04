@@ -28,4 +28,9 @@ public class DoctorController {
         return service.findByTrialId(trialId);
     }
 
+    @PostMapping(value = "/doctors")
+    public DoctorResponse create(@RequestBody CreateDoctorRequest request) throws ObjectNotFoundException{
+        return service.add(request);
+    }
+
 }

@@ -11,17 +11,21 @@ import lombok.Setter;
 public class DoctorResponse {
 
     private int id;
-    private String firstName;
-    private String lastName;
+    private String title;
+    private String name;
+    private String surname;
     private int ssn;
-    private String specialization;
+    private String specialisation;
+    private int trialId;
 
 
     public DoctorResponse(Doctor doctor) {
         this.id = doctor.getId();
-        this.firstName = doctor.getFirstName();
-        this.lastName = doctor.getLastName();
+        this.title = doctor.getTitle();
+        this.name= doctor.getName();
+        this.surname = doctor.getSurname();
         this.ssn = doctor.getSsn();
-        this.specialization = doctor.getSpecialization();
+        this.specialisation = doctor.getSpecialisation();
+        this.trialId = doctor.getTrial().getId();
     }
 }

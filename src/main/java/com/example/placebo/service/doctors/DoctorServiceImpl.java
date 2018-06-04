@@ -1,23 +1,29 @@
 package com.example.placebo.service.doctors;
 
+import com.example.placebo.controllers.doctors.CreateDoctorRequest;
 import com.example.placebo.controllers.doctors.DoctorResponse;
 import com.example.placebo.entities.Doctor;
+import com.example.placebo.entities.Trial;
 import com.example.placebo.exceptions.ObjectNotFoundException;
 import com.example.placebo.repository.DoctorRepository;
+import com.example.placebo.repository.TrialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
 public class DoctorServiceImpl implements DoctorService {
 
     private DoctorRepository doctorsRepository;
+    private TrialRepository trialRepository;
 
     @Autowired
-    public DoctorServiceImpl(DoctorRepository doctorsRepository) {
+    public DoctorServiceImpl(DoctorRepository doctorsRepository, TrialRepository trialRepository) {
         this.doctorsRepository = doctorsRepository;
+        this.trialRepository = trialRepository;
     }
 
 
@@ -28,10 +34,28 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<DoctorResponse> findByTrialId(int trialId) throws ObjectNotFoundException {
+    public List<DoctorResponse> findByTrialId(int trialId) {
         return doctorsRepository.findByTrial_Id(trialId)
                 .stream()
                 .map(DoctorResponse::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public DoctorResponse add(CreateDoctorRequest request) throws ObjectNotFoundException {
+        Doctor doctor = createDoctorFromRequest(request);
+        doctorsRepository.save(doctor);
+        return new DoctorResponse(doctor);
+    }
+
+    public Doctor createDoctorFromRequest(CreateDoctorRequest request) throws ObjectNotFoundException{
+        Doctor doctor = new Doctor();
+        doctor.setName(request.getName());
+        doctor.setTitle(request.getTitle());
+        doctor.setSurname(request.getSurname());
+        doctor.setSsn(request.getSsn());
+        doctor.setSpecialisation(request.getSpecialisation());
+        doctor.setTrial(trialRepository.findById(request.getTrialId()).orElseThrow(ObjectNotFoundException::new));
+        return doctor;
     }
 }

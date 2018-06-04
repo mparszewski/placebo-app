@@ -1,6 +1,7 @@
 package com.example.placebo.service.trials;
 
 import com.example.placebo.controllers.trials.TrialResponse;
+import com.example.placebo.entities.Trial;
 import com.example.placebo.exceptions.ObjectNotFoundException;
 import com.example.placebo.repository.TrialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +16,8 @@ public class TrialServiceImpl implements TrialService{
     private TrialRepository trialRepository;
 
     @Autowired
-    public TrialServiceImpl(TrialRepository trialRespository) {
-        this.trialRepository = trialRespository;
+    public TrialServiceImpl(TrialRepository trialRepository) {
+        this.trialRepository = trialRepository;
     }
 
     @Override
@@ -28,10 +29,10 @@ public class TrialServiceImpl implements TrialService{
     }
 
     @Override
-    public List<TrialResponse> findAllTrials() {
-        return trialRepository.findAll()
-                .stream()
-                .map(TrialResponse::new)
-                .collect(Collectors.toList());
+    public TrialResponse getTrialById(int id) throws ObjectNotFoundException{
+        Trial trial = trialRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
+        return new TrialResponse(trial);
     }
+
+
 }
