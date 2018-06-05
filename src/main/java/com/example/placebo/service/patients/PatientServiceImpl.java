@@ -12,11 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class PatientServiceImpl implements PatientService{
+public class PatientServiceImpl implements PatientService {
 
     private PatientRepository patientRepository;
     private TrialRepository trialRepository;
@@ -35,13 +34,25 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public List<ShortPatientResponse> getByTrialIdAndPhase(int id, Optional<Integer> phase) {
-        return null;
+    public List<ShortPatientResponse> getByTrialIdAndPhase(int trialId, Integer phase) {
+        return patientRepository.findByTrial_IdAndPhase(trialId, phase)
+                .stream()
+                .map(ShortPatientResponse::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ShortPatientResponse> getByTrialIAndIsPlacebo(int trialId, Integer isPlacebo) throws ObjectNotFoundException {
+        Trial trial = trialRepository.findById(trialId).orElseThrow(ObjectNotFoundException::new);
+        return patientRepository.findByTrial_IdAndIsPlaceboAndPhase(trialId, isPlacebo, trial.getPhase())
+                .stream()
+                .map(ShortPatientResponse::new)
+                .collect(Collectors.toList());
     }
 
 
     @Override
-    public List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, int isPlacebo, int phase) {
+    public List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, Integer isPlacebo, Integer phase) {
         return patientRepository.findByTrial_IdAndIsPlaceboAndPhase(id, isPlacebo, phase)
                 .stream()
                 .map(ShortPatientResponse::new)
@@ -49,13 +60,13 @@ public class PatientServiceImpl implements PatientService{
     }
 
     @Override
-    public PatientResponse add(CreatePatientRequest request) throws ObjectNotFoundException{
+    public PatientResponse add(CreatePatientRequest request) throws ObjectNotFoundException {
         Patient patient = createPatientFromRequest(request);
         patientRepository.save(patient);
         return new PatientResponse(patient);
     }
 
-    public Patient createPatientFromRequest(CreatePatientRequest request) throws ObjectNotFoundException{
+    public Patient createPatientFromRequest(CreatePatientRequest request) throws ObjectNotFoundException {
         Trial trial = trialRepository.findById(request.getTrialId()).orElseThrow(ObjectNotFoundException::new);
         Patient patient = new Patient();
         patient.setName(request.getName());
@@ -64,7 +75,7 @@ public class PatientServiceImpl implements PatientService{
         patient.setBirthDate(request.getBirthDate());
         patient.setTrial(trial);
         patient.setPhase(trial.getPhase());
-        patient.setIsPlacebo((int)Math.round(Math.random()));
+        patient.setIsPlacebo((int) Math.round(Math.random()));
         return patient;
     }
 }

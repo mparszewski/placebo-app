@@ -32,4 +32,24 @@ public class TrialController {
         return service.save(request);
     }
 
+    @GetMapping(value = "/phase/{trialId}")
+    public TrialPhaseResponse getTrialPhase(@PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
+        return service.getTrialPhaseById(trialId);
+    }
+
+    @GetMapping(value = "/masking/{trialId}")
+    public TrialMaskingResponse getTrialMasking(@PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
+        return service.getTrialMaskingById(trialId);
+    }
+
+    @PatchMapping(value = "/trials/{trialId}/archive")
+    public void setIsArchivedById(@PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
+        service.setArchivisationById(trialId);
+    }
+
+    @PatchMapping(value = "/trials/{trialId}/phase")
+    public void setPhaseById(@PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
+        service.setPhaseById(trialId);
+    }
+
 }

@@ -13,6 +13,7 @@ public class PatientResponse {
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
+    private String currentDosage;
     private int phase;
     private int isPlacebo;
 
@@ -22,6 +23,7 @@ public class PatientResponse {
         this.surname = patient.getSurname();
         this.ssn = patient.getSsn();
         this.birthDate = patient.getBirthDate();
+        this.currentDosage = patient.getCurrentDosage();
         this.phase = patient.getPhase();
         this.isPlacebo = patient.getIsPlacebo();
     }

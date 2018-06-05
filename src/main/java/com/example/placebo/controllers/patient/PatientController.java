@@ -19,17 +19,19 @@ public class PatientController {
 
 
     @GetMapping(name = "/patients")
-    public List<ShortPatientResponse> getPatientByTrialId(@RequestParam("trialId") int trialId,
-                                                          @RequestParam("isPlacebo") int isPlacebo,
-                                                          @RequestParam("phase") int phase) {
-        /*if(isPlacebo != 0 || isPlacebo != 1)
+    public List<ShortPatientResponse> getPatientByTrialId(@RequestParam(name = "trialId", required = true) int trialId,
+                                                          @RequestParam(name = "isPlacebo", required = false) Integer isPlacebo,
+                                                          @RequestParam(name = "phase", required = false) Integer phase)
+                                                          throws ObjectNotFoundException {
+        if (isPlacebo == null && phase == null) {
             return service.getAllByTrialId(trialId);
-        else{*/
+        } else if (isPlacebo == null) {
+            return service.getByTrialIdAndPhase(trialId, phase);
+        } else if (phase == null) {
+            return service.getByTrialIAndIsPlacebo(trialId, isPlacebo);
+        } else
             return service.getByTrialIdAndIsPlaceboAndPhase(trialId, isPlacebo, phase);
-        //}
     }
-
-
 
 
     @PostMapping("/patients")

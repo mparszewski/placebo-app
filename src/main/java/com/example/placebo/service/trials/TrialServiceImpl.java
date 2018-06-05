@@ -1,6 +1,8 @@
 package com.example.placebo.service.trials;
 
 import com.example.placebo.controllers.trials.CreateTrialRequest;
+import com.example.placebo.controllers.trials.TrialMaskingResponse;
+import com.example.placebo.controllers.trials.TrialPhaseResponse;
 import com.example.placebo.controllers.trials.TrialResponse;
 import com.example.placebo.entities.Trial;
 import com.example.placebo.exceptions.ObjectNotFoundException;
@@ -36,9 +38,36 @@ public class TrialServiceImpl implements TrialService{
     }
 
     @Override
+    public TrialPhaseResponse getTrialPhaseById(int id) throws ObjectNotFoundException {
+        Trial trial = trialRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
+        return new TrialPhaseResponse(trial);
+    }
+
+    @Override
+    public TrialMaskingResponse getTrialMaskingById(int id) throws ObjectNotFoundException {
+        Trial trial = trialRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
+        return new TrialMaskingResponse(trial);
+    }
+
+    @Override
     public TrialResponse save(CreateTrialRequest request) {
         Trial trial = trialRepository.save(createTrialFromRequest(request));
         return new TrialResponse(trial);
+    }
+
+    @Override
+    public void setArchivisationById(int trialId) throws ObjectNotFoundException{
+        Trial trial = trialRepository.findById(trialId).orElseThrow(ObjectNotFoundException::new);
+        trial.setIsArchived(1);
+        trialRepository.save(trial);
+    }
+
+    @Override
+    public void setPhaseById(int trialId) throws ObjectNotFoundException {
+        Trial trial = trialRepository.findById(trialId).orElseThrow(ObjectNotFoundException::new);
+        if(trial.getPhase() != 4)
+            trial.setPhase(trial.getPhase()+1);
+        trialRepository.save(trial);
     }
 
     public Trial createTrialFromRequest(CreateTrialRequest request) {

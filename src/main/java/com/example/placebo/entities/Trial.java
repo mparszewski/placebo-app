@@ -35,24 +35,24 @@ public class Trial {
     private LocalDate startDate;
 
     @Column(name = "masking")
-    private String masking;
+    private int masking;
 
     @Column(name = "responsible_party")
     private String responsibleParty;
 
-    @Column(name = "study_description")
+    @Column(name = "study_description", length = 2048)
     private String studyDescription;
 
-    @Column(name = "treatment_description")
+    @Column(name = "treatment_description", length = 2048)
     private String treatmentDescription;
 
-    @Column(name = "eligibilty_criterias")
+    @Column(name = "eligibilty_criterias", length = 2048)
     private String eligibiltyCriterias;
 
     @Column(name = "estimated_end_date")
     private LocalDate estimatedEndDate;
 
-    @Column(name = "contacts_and_locations")
+    @Column(name = "contacts_and_locations", length = 2048)
     private String contactsAndLocations;
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL)

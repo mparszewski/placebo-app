@@ -23,7 +23,7 @@ public class CreateTrialRequest {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
 
-    private String masking;
+    private int masking;
     private String responsibleParty;
     private String studyDescription;
     private String studyTitle;

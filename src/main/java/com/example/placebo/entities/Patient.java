@@ -39,6 +39,9 @@ public class Patient {
     @Column(name = "phase")
     private int phase;
 
+    @Column(name = "current_dosage")
+    private String currentDosage;
+
     @Column(name = "is_placebo")
     private int isPlacebo;
 

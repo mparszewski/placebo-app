@@ -6,15 +6,16 @@ import com.example.placebo.controllers.patient.ShortPatientResponse;
 import com.example.placebo.exceptions.ObjectNotFoundException;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PatientService {
 
     List<ShortPatientResponse> getAllByTrialId(int id);
 
-    List<ShortPatientResponse> getByTrialIdAndPhase(int id, Optional<Integer> phase);
+    List<ShortPatientResponse> getByTrialIdAndPhase(int id, Integer phase);
 
-    List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, int isPlacebo, int phase);
+    List<ShortPatientResponse> getByTrialIAndIsPlacebo(int id, Integer isPlacebo) throws ObjectNotFoundException;
+
+    List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, Integer isPlacebo, Integer phase);
 
     PatientResponse add(CreatePatientRequest request) throws ObjectNotFoundException;
 }

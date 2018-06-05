@@ -3,9 +3,7 @@ package com.example.placebo.entities;
 import lombok.*;
 
 import javax.persistence.*;
-import java.text.DateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

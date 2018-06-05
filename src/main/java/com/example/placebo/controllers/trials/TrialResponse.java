@@ -17,7 +17,7 @@ public class TrialResponse {
     private int phase;
     private int isArchived;
     private LocalDate startDate;
-    private String masking;
+    private int masking;
     private String responsibleParty;
     private String studyDescription;
     private String treatmentDescription;
