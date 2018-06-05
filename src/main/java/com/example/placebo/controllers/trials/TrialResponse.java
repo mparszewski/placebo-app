@@ -23,7 +23,7 @@ public class TrialResponse {
     private String treatmentDescription;
     private String eligibilityCriterias;
     private LocalDate estimatedEndDate;
-    private String contactAndLocations;
+    private String contactsAndLocations;
 
     public TrialResponse(Trial trial) {
         this.id = trial.getId();
@@ -35,9 +35,9 @@ public class TrialResponse {
         this.responsibleParty = trial.getResponsibleParty();
         this.studyDescription = trial.getStudyDescription();
         this.treatmentDescription = trial.getTreatmentDescription();
-        this.eligibilityCriterias = trial.getEligibilityCriterias();
+        this.eligibilityCriterias = trial.getEligibiltyCriterias();
         this.estimatedEndDate = trial.getEstimatedEndDate();
-        this.contactAndLocations = trial.getContactsAndLocations();
+        this.contactsAndLocations = trial.getContactsAndLocations();
 
     }
 

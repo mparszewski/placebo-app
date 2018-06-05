@@ -1,6 +1,5 @@
 package com.example.placebo.controllers.doctors;
 
-import com.example.placebo.entities.Trial;
 import lombok.*;
 
 @Getter

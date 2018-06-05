@@ -2,8 +2,8 @@ package com.example.placebo.service.doctors;
 
 import com.example.placebo.controllers.doctors.CreateDoctorRequest;
 import com.example.placebo.controllers.doctors.DoctorResponse;
+import com.example.placebo.controllers.doctors.ShortDoctorResponse;
 import com.example.placebo.entities.Doctor;
-import com.example.placebo.entities.Trial;
 import com.example.placebo.exceptions.ObjectNotFoundException;
 import com.example.placebo.repository.DoctorRepository;
 import com.example.placebo.repository.TrialRepository;
@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,10 +33,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<DoctorResponse> findByTrialId(int trialId) {
+    public List<ShortDoctorResponse> findByTrialId(int trialId) {
         return doctorsRepository.findByTrial_Id(trialId)
                 .stream()
-                .map(DoctorResponse::new)
+                .map(ShortDoctorResponse::new)
                 .collect(Collectors.toList());
     }
 

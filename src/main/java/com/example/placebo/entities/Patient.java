@@ -1,5 +1,6 @@
 package com.example.placebo.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
@@ -24,10 +25,10 @@ public class Patient {
     private int id;
 
     @Column(name = "name")
-    private String firstName;
+    private String name;
 
     @Column(name = "surname")
-    private String lastName;
+    private String surname;
 
     @Column(name = "ssn")
     private int ssn;

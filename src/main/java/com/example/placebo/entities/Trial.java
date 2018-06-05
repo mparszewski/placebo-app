@@ -47,12 +47,12 @@ public class Trial {
     private String treatmentDescription;
 
     @Column(name = "eligibilty_criterias")
-    private String eligibilityCriterias;
+    private String eligibiltyCriterias;
 
     @Column(name = "estimated_end_date")
     private LocalDate estimatedEndDate;
 
-    @Column(name = "contact_and_locations")
+    @Column(name = "contacts_and_locations")
     private String contactsAndLocations;
 
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL)

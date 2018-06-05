@@ -3,10 +3,7 @@ package com.example.placebo.controllers.trials;
 import com.example.placebo.exceptions.ObjectNotFoundException;
 import com.example.placebo.service.trials.TrialService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -30,5 +27,9 @@ public class TrialController {
         return service.getTrialById(trialId);
     }
 
+    @PostMapping(value = "/trials")
+    public TrialResponse add(@RequestBody CreateTrialRequest request) {
+        return service.save(request);
+    }
 
 }
