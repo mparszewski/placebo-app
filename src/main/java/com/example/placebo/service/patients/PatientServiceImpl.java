@@ -62,6 +62,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public PatientResponse add(CreatePatientRequest request) throws ObjectNotFoundException {
         Patient patient = createPatientFromRequest(request);
+        patient.setCurrentDosage("No dosage available");
         patientRepository.save(patient);
         return new PatientResponse(patient);
     }

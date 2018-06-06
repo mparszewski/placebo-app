@@ -39,4 +39,6 @@ public class PatientController {
         return service.add(request);
     }
 
+    //TODO: @GetMapping of patient 
+
 }
