@@ -26,20 +26,22 @@ public class PatientServiceImpl implements PatientService {
         this.trialRepository = trialRepository;
     }
 
-    public List<ShortPatientResponse> getAllByTrialId(int trialId) {
-        return patientRepository.findByTrial_Id(trialId)
+    @Override
+    public List<ShortPatientResponse> getAllByTrialId(int trialId) throws ObjectNotFoundException{
+        Trial trial = trialRepository.findById(trialId).orElseThrow(ObjectNotFoundException::new);
+        return patientRepository.findByTrial_IdAndPhase(trialId, trial.getPhase())
                 .stream()
                 .map(ShortPatientResponse::new)
                 .collect(Collectors.toList());
     }
 
-    @Override
     public List<ShortPatientResponse> getByTrialIdAndPhase(int trialId, Integer phase) {
         return patientRepository.findByTrial_IdAndPhase(trialId, phase)
                 .stream()
                 .map(ShortPatientResponse::new)
                 .collect(Collectors.toList());
     }
+
 
     @Override
     public List<ShortPatientResponse> getByTrialIAndIsPlacebo(int trialId, Integer isPlacebo) throws ObjectNotFoundException {
@@ -64,6 +66,12 @@ public class PatientServiceImpl implements PatientService {
         Patient patient = createPatientFromRequest(request);
         patient.setCurrentDosage("No dosage available");
         patientRepository.save(patient);
+        return new PatientResponse(patient);
+    }
+
+    @Override
+    public PatientResponse getByPatientId(int id) throws ObjectNotFoundException{
+        Patient patient = patientRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
         return new PatientResponse(patient);
     }
 

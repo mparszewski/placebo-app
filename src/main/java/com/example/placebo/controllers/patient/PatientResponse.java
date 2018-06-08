@@ -1,9 +1,18 @@
 package com.example.placebo.controllers.patient;
 import com.example.placebo.entities.Patient;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
+
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class PatientResponse {
 
     private int id;
@@ -16,6 +25,7 @@ public class PatientResponse {
     private String currentDosage;
     private int phase;
     private int isPlacebo;
+    private int trialId;
 
     public PatientResponse(Patient patient) {
         this.id = patient.getId();
@@ -26,5 +36,6 @@ public class PatientResponse {
         this.currentDosage = patient.getCurrentDosage();
         this.phase = patient.getPhase();
         this.isPlacebo = patient.getIsPlacebo();
+        this.trialId = patient.getTrial().getId();
     }
 }

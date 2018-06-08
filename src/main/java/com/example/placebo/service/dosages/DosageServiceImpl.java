@@ -11,6 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DosageServiceImpl implements DosageService {
@@ -32,6 +36,15 @@ public class DosageServiceImpl implements DosageService {
         patient.setCurrentDosage(request.getDosage());
         patientRepository.save(patient);
         return new DosageResponse(dosage);
+    }
+
+    @Override
+    public List<DosageResponse> getByPatientId(int patientId) throws ObjectNotFoundException {
+        return dosageRepository.findByPatient_Id(patientId)
+                .stream()
+                .map(DosageResponse::new)
+                .sorted(Comparator.comparing(DosageResponse::getDate).reversed())
+                .collect(Collectors.toList());
     }
 
     public Dosage createDosageFromRequest(CreateDosageRequest request) throws ObjectNotFoundException{

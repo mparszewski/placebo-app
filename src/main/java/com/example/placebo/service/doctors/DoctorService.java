@@ -11,7 +11,7 @@ public interface DoctorService {
 
     DoctorResponse findById(int id) throws ObjectNotFoundException;
 
-    List<ShortDoctorResponse> findByTrialId(int trialId) throws ObjectNotFoundException;
+    List<DoctorResponse> findByTrialId(int trialId) throws ObjectNotFoundException;
 
     DoctorResponse add(CreateDoctorRequest request) throws ObjectNotFoundException;
 }

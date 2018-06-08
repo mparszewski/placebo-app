@@ -24,7 +24,7 @@ public class DoctorController {
     }
 
     @GetMapping(value = "/doctors")
-    public List<ShortDoctorResponse> getDoctorsForTrial(@RequestParam("trialId") int trialId) throws ObjectNotFoundException {
+    public List<DoctorResponse> getDoctorsForTrial(@RequestParam("trialId") int trialId) throws ObjectNotFoundException {
         return service.findByTrialId(trialId);
     }
 

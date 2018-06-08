@@ -22,7 +22,7 @@ public class PatientController {
     public List<ShortPatientResponse> getPatientByTrialId(@RequestParam(name = "trialId", required = true) int trialId,
                                                           @RequestParam(name = "isPlacebo", required = false) Integer isPlacebo,
                                                           @RequestParam(name = "phase", required = false) Integer phase)
-                                                          throws ObjectNotFoundException {
+            throws ObjectNotFoundException {
         if (isPlacebo == null && phase == null) {
             return service.getAllByTrialId(trialId);
         } else if (isPlacebo == null) {
@@ -39,6 +39,9 @@ public class PatientController {
         return service.add(request);
     }
 
-    //TODO: @GetMapping of patient 
+    @GetMapping("/patients/{patientId}")
+    public PatientResponse getByPatientId (@PathVariable("patientId") int id) throws ObjectNotFoundException {
+        return service.getByPatientId(id);
+    }
 
 }

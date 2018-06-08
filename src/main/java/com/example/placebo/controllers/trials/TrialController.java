@@ -23,7 +23,7 @@ public class TrialController {
     }
 
     @GetMapping(value = "/trials/{trialId}")
-    public TrialResponse getTrialById(@PathVariable(value = "trialId") int trialId) throws ObjectNotFoundException{
+    public ExtendedTrialResponse getTrialById(@PathVariable(value = "trialId") int trialId) throws ObjectNotFoundException{
         return service.getTrialById(trialId);
     }
 

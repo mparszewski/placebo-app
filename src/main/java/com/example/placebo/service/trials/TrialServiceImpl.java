@@ -1,11 +1,10 @@
 package com.example.placebo.service.trials;
 
-import com.example.placebo.controllers.trials.CreateTrialRequest;
-import com.example.placebo.controllers.trials.TrialMaskingResponse;
-import com.example.placebo.controllers.trials.TrialPhaseResponse;
-import com.example.placebo.controllers.trials.TrialResponse;
+import com.example.placebo.controllers.trials.*;
+import com.example.placebo.entities.Patient;
 import com.example.placebo.entities.Trial;
 import com.example.placebo.exceptions.ObjectNotFoundException;
+import com.example.placebo.repository.PatientRepository;
 import com.example.placebo.repository.TrialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +16,12 @@ import java.util.stream.Collectors;
 public class TrialServiceImpl implements TrialService{
 
     private TrialRepository trialRepository;
+    private PatientRepository patientRepository;
 
     @Autowired
-    public TrialServiceImpl(TrialRepository trialRepository) {
+    public TrialServiceImpl(TrialRepository trialRepository, PatientRepository patientRepository) {
         this.trialRepository = trialRepository;
+        this.patientRepository = patientRepository;
     }
 
     @Override
@@ -32,9 +33,12 @@ public class TrialServiceImpl implements TrialService{
     }
 
     @Override
-    public TrialResponse getTrialById(int id) throws ObjectNotFoundException{
+    public ExtendedTrialResponse getTrialById(int id) throws ObjectNotFoundException{
         Trial trial = trialRepository.findById(id).orElseThrow(ObjectNotFoundException::new);
-        return new TrialResponse(trial);
+        ExtendedTrialResponse trialResponse = new ExtendedTrialResponse(trial);
+        List<Patient> patients = patientRepository.findByTrial_IdAndPhase(trial.getId(),trial.getPhase());
+        trialResponse.setNumberOfPatients(patients.size());
+        return trialResponse;
     }
 
     @Override

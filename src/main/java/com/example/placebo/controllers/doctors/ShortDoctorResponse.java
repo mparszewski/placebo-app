@@ -15,11 +15,13 @@ import java.io.Serializable;
 public class ShortDoctorResponse implements Serializable {
 
     private int id;
+    private String title;
     private String name;
     private String surname;
 
     public ShortDoctorResponse(Doctor doctor) {
         this.id = doctor.getId();
+        this.title = doctor.getTitle();
         this.name = doctor.getName();
         this.surname = doctor.getSurname();
     }

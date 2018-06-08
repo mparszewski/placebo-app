@@ -16,4 +16,5 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
     List<Patient> findByTrial_IdAndIsPlacebo(int trialId, Integer isPlacebo);
 
     List<Patient> findByTrial_IdAndIsPlaceboAndPhase(int id, Integer isPlacebo, Integer phase);
+
 }

@@ -33,10 +33,10 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public List<ShortDoctorResponse> findByTrialId(int trialId) {
+    public List<DoctorResponse> findByTrialId(int trialId) {
         return doctorsRepository.findByTrial_Id(trialId)
                 .stream()
-                .map(ShortDoctorResponse::new)
+                .map(DoctorResponse::new)
                 .collect(Collectors.toList());
     }
 

@@ -23,14 +23,13 @@ public class Observation {
     private int id;
 
     @Column(name = "date")
-    private LocalDate date;
+    private LocalDateTime date;
 
     @Column(name = "text")
     private String text;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
+    @Column(name = "doctor_info")
+    private String doctorInfo;
 
     @ManyToOne
     @JoinColumn(name = "patient_id")

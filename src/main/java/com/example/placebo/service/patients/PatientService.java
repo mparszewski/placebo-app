@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PatientService {
 
-    List<ShortPatientResponse> getAllByTrialId(int id);
+    List<ShortPatientResponse> getAllByTrialId(int id) throws ObjectNotFoundException;
 
     List<ShortPatientResponse> getByTrialIdAndPhase(int id, Integer phase);
 
@@ -18,4 +18,6 @@ public interface PatientService {
     List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, Integer isPlacebo, Integer phase);
 
     PatientResponse add(CreatePatientRequest request) throws ObjectNotFoundException;
+
+    PatientResponse getByPatientId(int id) throws ObjectNotFoundException;
 }
