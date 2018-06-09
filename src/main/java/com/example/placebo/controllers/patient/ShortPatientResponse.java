@@ -15,10 +15,12 @@ public class ShortPatientResponse {
     private int id;
     private String name;
     private String surname;
+    private int group;
 
     public ShortPatientResponse(Patient patient) {
         this.id = patient.getId();
         this.name = patient.getName();
         this.surname = patient.getSurname();
+        this.group = patient.getGroup();
     }
 }

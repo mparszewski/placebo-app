@@ -13,8 +13,8 @@ public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
     List<Patient> findByTrial_IdAndPhase(int trialId, Integer phase);
 
-    List<Patient> findByTrial_IdAndIsPlacebo(int trialId, Integer isPlacebo);
+    List<Patient> findByTrial_IdAndGroup(int trialId, Integer group);
 
-    List<Patient> findByTrial_IdAndIsPlaceboAndPhase(int id, Integer isPlacebo, Integer phase);
+    List<Patient> findByTrial_IdAndGroupAndPhase(int id, Integer group, Integer phase);
 
 }

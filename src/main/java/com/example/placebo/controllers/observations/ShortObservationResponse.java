@@ -16,11 +16,11 @@ public class ShortObservationResponse {
 
     private int id;
     private LocalDateTime date;
-    private String doctorInformation;
+    private String doctorInfo;
 
     public ShortObservationResponse(Observation observation) {
         this.id = observation.getId();
         this.date = observation.getDate();
-        this.doctorInformation = observation.getDoctorInfo();
+        this.doctorInfo = observation.getDoctorInfo();
     }
 }

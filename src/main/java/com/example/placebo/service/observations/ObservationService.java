@@ -13,5 +13,5 @@ public interface ObservationService {
 
     ObservationResponse getObservationById(int observationId) throws ObjectNotFoundException;
 
-    List<ShortObservationResponse> getObservationsByPatientId(int patientId);
+    List<ObservationResponse> getObservationsByPatientId(int patientId);
 }

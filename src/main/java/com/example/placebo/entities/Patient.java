@@ -1,12 +1,10 @@
 package com.example.placebo.entities;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -42,8 +40,8 @@ public class Patient {
     @Column(name = "current_dosage")
     private String currentDosage;
 
-    @Column(name = "is_placebo")
-    private int isPlacebo;
+    @Column(name = "group")
+    private int group;
 
     @ManyToOne
     @JoinColumn(name = "trial_id")

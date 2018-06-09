@@ -55,6 +55,12 @@ public class Trial {
     @Column(name = "contacts_and_locations", length = 2048)
     private String contactsAndLocations;
 
+    @Column(name = "password")
+    private String password;
+
+    @Column(name = "is_placebo_reversed")
+    private int isPlaceboReversed;
+
     @OneToMany(mappedBy = "trial", cascade = CascadeType.ALL)
     private List<Doctor> doctors = new ArrayList<>();
 

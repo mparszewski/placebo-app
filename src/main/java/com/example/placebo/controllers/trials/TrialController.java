@@ -37,12 +37,12 @@ public class TrialController {
         return service.getTrialPhaseById(trialId);
     }
 
-    @GetMapping(value = "/masking/{trialId}")
+    @GetMapping(value = "/trials/masking/{trialId}")
     public TrialMaskingResponse getTrialMasking(@PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
         return service.getTrialMaskingById(trialId);
     }
 
-    @PatchMapping(value = "/trials/{trialId}/archive")
+    @PatchMapping(value = "/trials/trials/{trialId}/archive")
     public void setIsArchivedById(@PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
         service.setArchivisationById(trialId);
     }
@@ -50,6 +50,12 @@ public class TrialController {
     @PatchMapping(value = "/trials/{trialId}/phase")
     public void setPhaseById(@PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
         service.setPhaseById(trialId);
+    }
+
+    @PostMapping(value = "/trials/password/trialId")
+    public PasswordResponse getPasswordForTrial(@RequestBody PasswordRequest request,
+                                                @PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
+        return service.checkPassword(trialId, request);
     }
 
 }

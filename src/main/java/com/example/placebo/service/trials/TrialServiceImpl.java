@@ -9,6 +9,7 @@ import com.example.placebo.repository.TrialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.ManyToOne;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -74,6 +75,21 @@ public class TrialServiceImpl implements TrialService{
         trialRepository.save(trial);
     }
 
+    @Override
+    public PasswordResponse checkPassword(int trialId, PasswordRequest request) throws ObjectNotFoundException {
+        Trial trial = trialRepository.findById(trialId).orElseThrow(ObjectNotFoundException::new);
+        PasswordResponse response = new PasswordResponse();
+        if (trial.getPassword().equals(request.getPassword())) {
+            if(trial.getIsPlaceboReversed() == 1) {
+                response.setResponse("Group B is Placebo, group A is not placebo");
+            }
+            else
+                response.setResponse("Group A is Placebo, group B is not placebo");
+        } else
+            response.setResponse("Incorrect password");
+        return response;
+    }
+
     public Trial createTrialFromRequest(CreateTrialRequest request) {
         Trial trial = new Trial();
         trial.setContactsAndLocations(request.getContactsAndLocations());
@@ -87,6 +103,8 @@ public class TrialServiceImpl implements TrialService{
         trial.setStudyDescription(request.getStudyDescription());
         trial.setStudyTitle(request.getStudyTitle());
         trial.setTreatmentDescription(request.getTreatmentDescription());
+        trial.setPassword(request.getPassword());
+        trial.setIsPlaceboReversed((int) Math.round(Math.random()));
         return trial;
     }
 

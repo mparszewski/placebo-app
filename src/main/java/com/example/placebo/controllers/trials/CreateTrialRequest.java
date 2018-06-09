@@ -28,4 +28,5 @@ public class CreateTrialRequest {
     private String studyDescription;
     private String studyTitle;
     private String treatmentDescription;
+    private String password;
 }

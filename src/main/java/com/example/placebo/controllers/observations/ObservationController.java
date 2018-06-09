@@ -30,7 +30,7 @@ public class ObservationController {
     }
 
     @GetMapping("/observations")
-    public List<ShortObservationResponse> getObservationByPatientId(@RequestParam("patientId") int patientId) {
+    public List<ObservationResponse> getObservationByPatientId(@RequestParam("patientId") int patientId) {
         return service.getObservationsByPatientId(patientId);
     }
 }

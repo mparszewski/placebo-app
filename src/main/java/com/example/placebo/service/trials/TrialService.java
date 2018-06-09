@@ -20,4 +20,6 @@ public interface TrialService {
     void setArchivisationById(int trialId) throws ObjectNotFoundException;
 
     void setPhaseById(int trialId) throws ObjectNotFoundException;
+
+    PasswordResponse checkPassword(int id, PasswordRequest request) throws ObjectNotFoundException;
 }

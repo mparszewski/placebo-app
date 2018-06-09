@@ -24,7 +24,7 @@ public class PatientResponse {
     private LocalDate birthDate;
     private String currentDosage;
     private int phase;
-    private int isPlacebo;
+    private int group;
     private int trialId;
 
     public PatientResponse(Patient patient) {
@@ -35,7 +35,7 @@ public class PatientResponse {
         this.birthDate = patient.getBirthDate();
         this.currentDosage = patient.getCurrentDosage();
         this.phase = patient.getPhase();
-        this.isPlacebo = patient.getIsPlacebo();
+        this.group = patient.getGroup();
         this.trialId = patient.getTrial().getId();
     }
 }

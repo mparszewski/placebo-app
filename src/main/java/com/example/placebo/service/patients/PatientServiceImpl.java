@@ -44,9 +44,9 @@ public class PatientServiceImpl implements PatientService {
 
 
     @Override
-    public List<ShortPatientResponse> getByTrialIAndIsPlacebo(int trialId, Integer isPlacebo) throws ObjectNotFoundException {
+    public List<ShortPatientResponse> getByTrialIAndIsPlacebo(int trialId, Integer group) throws ObjectNotFoundException {
         Trial trial = trialRepository.findById(trialId).orElseThrow(ObjectNotFoundException::new);
-        return patientRepository.findByTrial_IdAndIsPlaceboAndPhase(trialId, isPlacebo, trial.getPhase())
+        return patientRepository.findByTrial_IdAndGroupAndPhase(trialId, group, trial.getPhase())
                 .stream()
                 .map(ShortPatientResponse::new)
                 .collect(Collectors.toList());
@@ -54,8 +54,8 @@ public class PatientServiceImpl implements PatientService {
 
 
     @Override
-    public List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, Integer isPlacebo, Integer phase) {
-        return patientRepository.findByTrial_IdAndIsPlaceboAndPhase(id, isPlacebo, phase)
+    public List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, Integer group, Integer phase) {
+        return patientRepository.findByTrial_IdAndGroupAndPhase(id, group, phase)
                 .stream()
                 .map(ShortPatientResponse::new)
                 .collect(Collectors.toList());
@@ -84,7 +84,7 @@ public class PatientServiceImpl implements PatientService {
         patient.setBirthDate(request.getBirthDate());
         patient.setTrial(trial);
         patient.setPhase(trial.getPhase());
-        patient.setIsPlacebo((int) Math.round(Math.random()));
+        patient.setGroup((int) Math.round(Math.random()));
         return patient;
     }
 }

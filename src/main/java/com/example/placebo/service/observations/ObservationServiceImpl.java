@@ -2,7 +2,6 @@ package com.example.placebo.service.observations;
 
 import com.example.placebo.controllers.observations.CreateObservationRequest;
 import com.example.placebo.controllers.observations.ObservationResponse;
-import com.example.placebo.controllers.observations.ShortObservationResponse;
 import com.example.placebo.entities.Observation;
 import com.example.placebo.entities.Patient;
 import com.example.placebo.exceptions.ObjectNotFoundException;
@@ -27,7 +26,7 @@ public class ObservationServiceImpl implements ObservationService {
     @Autowired
     public ObservationServiceImpl(ObservationRepository observationRepository, PatientRepository patientRepository, DoctorRepository doctorRepository) {
         this.patientRepository = patientRepository;
-        this. doctorRepository = doctorRepository;
+        this.doctorRepository = doctorRepository;
         this.observationRepository = observationRepository;
     }
 
@@ -46,11 +45,11 @@ public class ObservationServiceImpl implements ObservationService {
     }
 
     @Override
-    public List<ShortObservationResponse> getObservationsByPatientId(int patientId) {
+    public List<ObservationResponse> getObservationsByPatientId(int patientId) {
         return observationRepository.findByPatient_Id(patientId)
                 .stream()
-                .map(ShortObservationResponse::new)
-                .sorted(Comparator.comparing(ShortObservationResponse::getDate).reversed())
+                .map(ObservationResponse::new)
+                .sorted(Comparator.comparingInt(ObservationResponse::getId).reversed())
                 .collect(Collectors.toList());
     }
 
@@ -61,6 +60,7 @@ public class ObservationServiceImpl implements ObservationService {
         observation.setId(request.getId());
         observation.setDate(LocalDateTime.now());
         observation.setPatient(patient);
+        observation.setDoctorInfo(request.getDoctorInfo());
         observation.setText(request.getText());
         return observation;
     }
