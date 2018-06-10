@@ -35,7 +35,7 @@ public class PatientResponse {
         this.birthDate = patient.getBirthDate();
         this.currentDosage = patient.getCurrentDosage();
         this.phase = patient.getPhase();
-        this.group = patient.getGroup();
+        this.group = patient.getPlaceboGroup();
         this.trialId = patient.getTrial().getId();
     }
 }

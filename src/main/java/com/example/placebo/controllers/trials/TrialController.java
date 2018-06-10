@@ -52,10 +52,9 @@ public class TrialController {
         service.setPhaseById(trialId);
     }
 
-    @PostMapping(value = "/trials/password/trialId")
-    public PasswordResponse getPasswordForTrial(@RequestBody PasswordRequest request,
-                                                @PathVariable(name = "trialId") int trialId) throws ObjectNotFoundException {
-        return service.checkPassword(trialId, request);
+    @PostMapping(value = "/trials/password")
+    public PasswordResponse getPasswordForTrial(@RequestBody PasswordRequest request) throws ObjectNotFoundException {
+        return service.checkPassword(request);
     }
 
 }

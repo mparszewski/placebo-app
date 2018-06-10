@@ -40,8 +40,8 @@ public class Patient {
     @Column(name = "current_dosage")
     private String currentDosage;
 
-    @Column(name = "group")
-    private int group;
+    @Column(name = "placebo_group")
+    private int placeboGroup;
 
     @ManyToOne
     @JoinColumn(name = "trial_id")

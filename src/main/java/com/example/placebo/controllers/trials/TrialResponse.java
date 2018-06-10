@@ -38,7 +38,6 @@ public class TrialResponse {
         this.eligibilityCriterias = trial.getEligibiltyCriterias();
         this.estimatedEndDate = trial.getEstimatedEndDate();
         this.contactsAndLocations = trial.getContactsAndLocations();
-
     }
 
 }

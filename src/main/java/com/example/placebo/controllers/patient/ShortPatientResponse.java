@@ -21,6 +21,6 @@ public class ShortPatientResponse {
         this.id = patient.getId();
         this.name = patient.getName();
         this.surname = patient.getSurname();
-        this.group = patient.getGroup();
+        this.group = patient.getPlaceboGroup();
     }
 }

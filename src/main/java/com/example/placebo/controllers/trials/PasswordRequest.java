@@ -12,4 +12,5 @@ import lombok.*;
 public class PasswordRequest {
 
     private String password;
+    private int trialId;
 }

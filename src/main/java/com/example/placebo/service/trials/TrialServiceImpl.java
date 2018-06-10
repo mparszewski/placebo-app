@@ -76,18 +76,18 @@ public class TrialServiceImpl implements TrialService{
     }
 
     @Override
-    public PasswordResponse checkPassword(int trialId, PasswordRequest request) throws ObjectNotFoundException {
-        Trial trial = trialRepository.findById(trialId).orElseThrow(ObjectNotFoundException::new);
-        PasswordResponse response = new PasswordResponse();
+    public PasswordResponse checkPassword(PasswordRequest request) throws ObjectNotFoundException {
+        Trial trial = trialRepository.findById(request.getTrialId()).orElseThrow(ObjectNotFoundException::new);
+        PasswordResponse passwordResponse = new PasswordResponse();
         if (trial.getPassword().equals(request.getPassword())) {
             if(trial.getIsPlaceboReversed() == 1) {
-                response.setResponse("Group B is Placebo, group A is not placebo");
+                passwordResponse.setResponse("Group B is Placebo, group A is not placebo");
             }
             else
-                response.setResponse("Group A is Placebo, group B is not placebo");
+                passwordResponse.setResponse("Group A is Placebo, group B is not placebo");
         } else
-            response.setResponse("Incorrect password");
-        return response;
+            passwordResponse.setResponse("Incorrect password");
+        return passwordResponse;
     }
 
     public Trial createTrialFromRequest(CreateTrialRequest request) {

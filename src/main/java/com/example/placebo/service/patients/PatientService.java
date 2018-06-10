@@ -13,11 +13,12 @@ public interface PatientService {
 
     List<ShortPatientResponse> getByTrialIdAndPhase(int id, Integer phase);
 
-    List<ShortPatientResponse> getByTrialIAndIsPlacebo(int id, Integer isPlacebo) throws ObjectNotFoundException;
+    List<ShortPatientResponse> getByTrialIAndGroup(int id, Integer group) throws ObjectNotFoundException;
 
-    List<ShortPatientResponse> getByTrialIdAndIsPlaceboAndPhase(int id, Integer isPlacebo, Integer phase);
+    List<ShortPatientResponse> getByTrialIdAndGroupAndPhase(int id, Integer group, Integer phase);
 
     PatientResponse add(CreatePatientRequest request) throws ObjectNotFoundException;
 
     PatientResponse getByPatientId(int id) throws ObjectNotFoundException;
+
 }

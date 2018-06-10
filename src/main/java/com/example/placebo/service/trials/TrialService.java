@@ -21,5 +21,5 @@ public interface TrialService {
 
     void setPhaseById(int trialId) throws ObjectNotFoundException;
 
-    PasswordResponse checkPassword(int id, PasswordRequest request) throws ObjectNotFoundException;
+    PasswordResponse checkPassword(PasswordRequest request) throws ObjectNotFoundException;
 }
