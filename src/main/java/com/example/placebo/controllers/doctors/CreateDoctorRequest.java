@@ -13,7 +13,7 @@ public class CreateDoctorRequest {
     private String title;
     private String name;
     private String surname;
-    private int ssn;
+    private long ssn;
     private String specialisation;
     private int trialId;
 

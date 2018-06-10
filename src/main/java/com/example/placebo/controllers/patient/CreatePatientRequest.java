@@ -15,7 +15,7 @@ public class CreatePatientRequest {
 
     private String name;
     private String surname;
-    private int ssn;
+    private long ssn;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;

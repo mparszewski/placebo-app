@@ -29,7 +29,7 @@ public class Patient {
     private String surname;
 
     @Column(name = "ssn")
-    private int ssn;
+    private long ssn;
 
     @Column(name = "birth_date")
     private LocalDate birthDate;

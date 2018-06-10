@@ -30,7 +30,7 @@ public class Doctor{
     private String surname;
 
     @Column(name = "ssn")
-    private int ssn;
+    private long ssn;
 
     @Column(name = "specialisation")
     private String specialisation;

@@ -18,7 +18,7 @@ public class PatientResponse {
     private int id;
     private String name;
     private String surname;
-    private int ssn;
+    private long ssn;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
